@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8"> <!-- Configuración para caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adaptación para dispositivos móviles -->
+    <title>Formulario de Notas</title> <!-- Título de la página -->
+    <!-- Enlace al archivo de estilos CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Sección del encabezado -->
+    <header>
+        <h1>Formulario de Notas</h1> <!-- Título principal del formulario -->
+        <p>Ingrese las notas y asistencia para calcular su promedio.</p> <!-- Descripción breve del formulario -->
+        <nav> <!-- Barra de navegación -->
+            <a href="/">Inicio</a> <!-- Enlace al inicio -->
+            <a href="/ejercicio1">Ejercicio 1</a> <!-- Enlace al formulario de notas -->
+            <a href="/ejercicio2">Ejercicio 2</a> <!-- Enlace al formulario de nombres -->
+        </nav>
+    </header>
+
+    <!-- Contenedor del formulario -->
+    <div class="container">
+        <!-- Formulario para calcular promedio de notas -->
+        <form action="/ejercicio1" method="post">
+            <label>Nota 1 (10 a 70):</label> <!-- Etiqueta para el campo Nota 1 -->
+            <input type="number" name="nota1" min="10" max="70" step="0.01" required> <!-- Campo de entrada para Nota 1 -->
+
+            <label>Nota 2 (10 a 70):</label> <!-- Etiqueta para el campo Nota 2 -->
+            <input type="number" name="nota2" min="10" max="70" step="0.01" required> <!-- Campo de entrada para Nota 2 -->
+
+            <label>Nota 3 (10 a 70):</label> <!-- Etiqueta para el campo Nota 3 -->
+            <input type="number" name="nota3" min="10" max="70" step="0.01" required> <!-- Campo de entrada para Nota 3 -->
+
+            <label>Asistencia (%):</label> <!-- Etiqueta para el campo Asistencia -->
+            <input type="number" name="asistencia" min="0" max="100" step="0.01" required> <!-- Campo de entrada para Asistencia -->
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="button">Enviar</button>
+        </form>
+
+        <!-- Mostrar mensajes de error si los hay -->
+        {% if error %}
+        <div class="result error">
+            <p>{{ error }}</p> <!-- Muestra el mensaje de error -->
+        </div>
+        {% endif %}
+
+        <!-- Mostrar los resultados si existen -->
+        {% if promedio is defined and estado is defined %}
+        <div class="result">
+            <p>Promedio: {{ promedio }}</p> <!-- Muestra el promedio calculado -->
+            <p>{{ estado }}</p> <!-- Muestra si el estudiante aprobó o reprobó -->
+        </div>
+        {% endif %}
+
+        <!-- Botón para regresar al menú principal -->
+        <a href="/" class="button">Volver al Menú</a>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

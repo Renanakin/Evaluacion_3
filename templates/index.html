@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8"> <!-- Configuración para caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adaptación para dispositivos móviles -->
+    <title>Menú Principal</title> <!-- Título de la página -->
+    <!-- Enlace al archivo de estilos CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Sección del encabezado -->
+    <header>
+        <h1>Menú Principal</h1> <!-- Título principal del menú -->
+        <p>Seleccione uno de los ejercicios disponibles para empezar.</p> <!-- Descripción breve del menú -->
+        <nav> <!-- Barra de navegación -->
+            <a href="/">Inicio</a> <!-- Enlace al inicio -->
+            <a href="/ejercicio1">Ejercicio 1</a> <!-- Enlace al formulario de notas -->
+            <a href="/ejercicio2">Ejercicio 2</a> <!-- Enlace al formulario de nombres -->
+        </nav>
+    </header>
+
+    <!-- Contenedor principal con los enlaces a los ejercicios -->
+    <div class="container">
+        <a href="/ejercicio1" class="button">Ejercicio 1</a> <!-- Enlace al formulario de notas -->
+        <a href="/ejercicio2" class="button">Ejercicio 2</a> <!-- Enlace al formulario de nombres -->
+    </div>
+</body>
+</html>
+
+
+

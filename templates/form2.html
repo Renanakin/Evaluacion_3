@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Configuración básica de la página -->
+    <meta charset="UTF-8"> <!-- Configuración para caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adaptación para dispositivos móviles -->
+    <title>Formulario de Nombres</title> <!-- Título de la página -->
+    <!-- Enlace al archivo de estilos CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Script para validar los nombres ingresados -->
+    <script>
+        // Función para validar que solo se ingresen letras y espacios
+        function validarFormulario() {
+            const patron = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; // Expresión regular para validar nombres
+            const nombre1 = document.forms["nombresForm"]["nombre1"].value;
+            const nombre2 = document.forms["nombresForm"]["nombre2"].value;
+            const nombre3 = document.forms["nombresForm"]["nombre3"].value;
+
+            // Verificar si algún nombre no cumple con el patrón
+            if (!patron.test(nombre1) || !patron.test(nombre2) || !patron.test(nombre3)) {
+                alert("Los nombres solo pueden contener letras y espacios."); // Mostrar alerta
+                return false; // Cancelar el envío del formulario
+            }
+            return true; // Permitir el envío del formulario
+        }
+    </script>
+</head>
+<body>
+    <!-- Sección del encabezado -->
+    <header>
+        <h1>Formulario de Nombres</h1> <!-- Título principal del formulario -->
+        <p>Ingrese los nombres para determinar el más largo.</p> <!-- Descripción breve del formulario -->
+        <nav> <!-- Barra de navegación -->
+            <a href="/">Inicio</a> <!-- Enlace al inicio -->
+            <a href="/ejercicio1">Ejercicio 1</a> <!-- Enlace al formulario de notas -->
+            <a href="/ejercicio2">Ejercicio 2</a> <!-- Enlace al formulario actual -->
+        </nav>
+    </header>
+
+    <!-- Contenedor del formulario -->
+    <div class="container">
+        <!-- Formulario para encontrar el nombre más largo -->
+        <form name="nombresForm" action="/ejercicio2" method="post" onsubmit="return validarFormulario()">
+            <label>Nombre 1:</label> <!-- Etiqueta para el campo Nombre 1 -->
+            <input type="text" name="nombre1" required> <!-- Campo de entrada para Nombre 1 -->
+
+            <label>Nombre 2:</label> <!-- Etiqueta para el campo Nombre 2 -->
+            <input type="text" name="nombre2" required> <!-- Campo de entrada para Nombre 2 -->
+
+            <label>Nombre 3:</label> <!-- Etiqueta para el campo Nombre 3 -->
+            <input type="text" name="nombre3" required> <!-- Campo de entrada para Nombre 3 -->
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="button">Enviar</button>
+        </form>
+
+        <!-- Mostrar mensajes de error si los hay -->
+        {% if error %}
+        <div class="result error">
+            <p>{{ error }}</p> <!-- Muestra el mensaje de error -->
+        </div>
+        {% endif %}
+
+        <!-- Mostrar los resultados si existen -->
+        {% if nombre_mayor is defined and longitud is defined %}
+        <div class="result">
+            <p>El nombre con mayor cantidad de caracteres es: {{ nombre_mayor }}</p> <!-- Muestra el nombre más largo -->
+            <p>El nombre tiene: {{ longitud }} caracteres</p> <!-- Muestra la longitud del nombre -->
+        </div>
+        {% endif %}
+
+        <!-- Botón para regresar al menú principal -->
+        <a href="/" class="button">Volver al Menú</a>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
